@@ -8,12 +8,20 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  telegramId Int     @unique
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  telegramId Int      @unique
   username   String?
   firstName  String?
   lastName   String?
-  points     Int     @default(0)
+  points     Int      @default(0)
+  role       Role
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+enum Role {
+  CHILD
+  PARENT
+  ADMIN
+  CREATOR
 }
